@@ -1,13 +1,14 @@
-<template lang="html">
-  <v-col cols="12">
-    <v-text-field
-      label="Введите сообщение"
-      outlined
-      v-model="text"
-      @keydown.enter="send"
-    >
-
-    </v-text-field>
+<template>
+    <v-col cols="12" class="innerForm">
+      <v-textarea
+        label="Введите сообщение"
+        rows="1"
+        auto-grow
+        outlined
+        dense
+        v-model="text"
+        v-on:keydown.shift.enter="send"
+      ></v-textarea>
   </v-col>
 </template>
 
@@ -33,5 +34,8 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style scoped>
+.innerForm {
+
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="c-wrap">
-    <div class="c-chat">
+    <div class="c-chat" ref='block'>
       <Message
-        v-for="m in messages" :key="m.text"
+        v-for="(m, index) in messages" :key="index"
         :name="m.name"
         :text="m.text"
         :owner="m.id === user.id"
@@ -29,7 +29,14 @@ export default {
     Message,
     ChatForm
   },
-  computed: mapState(['user', 'messages'])
+  computed: mapState(['user', 'messages']),
+  watch: {
+    messages() {
+      setTimeout(()=> {
+        this.$refs.block.scrollTop = this.$refs.block.scrollHeight
+      });
+    }
+  }
 }
 </script>
 
@@ -42,11 +49,12 @@ export default {
 
   .c-form {
     position: absolute;
+    overflow: hidden;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 1rem;
-    height: 80px;
+    min-height: 100px;
     background: #212121;
   }
 
@@ -55,7 +63,7 @@ export default {
     top: 0;
     right: 0;
     left: 0;
-    bottom: 80px;
+    bottom: 95px;
     padding: 1rem;
     overflow-y: auto;
   }

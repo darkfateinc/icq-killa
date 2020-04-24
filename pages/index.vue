@@ -6,6 +6,20 @@
   >
   <v-flex xs12 sm8>
     <v-card min-width="400">
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="3000"
+        top
+      >
+        {{ message }}
+        <v-btn
+          dark
+          text
+          @click="snackbar = false"
+        >
+          Закрыть
+        </v-btn>
+      </v-snackbar>
       <v-card-title>ЧЯТ</v-card-title>
       <v-card-text>
         <v-form
@@ -59,6 +73,8 @@ export default {
   },
   data: () => ({
     valid: true,
+    snackbar: false,
+    message: '',
     name: '',
     nameRules: [
       v => !!v || 'Введите имя',
@@ -70,6 +86,15 @@ export default {
       v => (v && v.length <= 16) || 'Название должно содержать не более 16 символов',
     ]
   }),
+  mounted() {
+    const {message} = this.$route.query;
+    if (message === 'noUser') {
+      this.message = 'Введите данные'
+    } else if (message === 'leftChat') {
+      this.message = 'Вы вышли из чата';
+    }
+    this.snackbar = !!this.message;
+  },
   methods: {
     ...mapMutations(['setUser']),
     submit() {
