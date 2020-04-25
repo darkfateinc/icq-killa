@@ -3,7 +3,8 @@ const { Nuxt, Builder } = require('nuxt')
 const {app, server} = require('./app')
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
-config.dev = process.env.NODE_ENV !== 'production'
+
+//config.dev = process.env.NODE_ENV !== 'production'
 
 async function start () {
   // Init Nuxt.js
@@ -24,7 +25,7 @@ async function start () {
   // Listen the server
   server.listen(port, () => {
     consola.ready({
-      message: `Server listening on http://${host}:${port}`,
+      message: `Server listening on https://${host}:${port}`,
       badge: true
     })
   })
