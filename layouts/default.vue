@@ -2,7 +2,9 @@
   <v-app app dark>
     <v-navigation-drawer app v-model="drawer" ref='block' v-bind:mobile-break-point="breakpoint">
       <v-list subheader>
-        <v-subheader>Список людей в комнате</v-subheader>
+        <div class="drawerHeader">
+          <v-subheader>Список людей в комнате</v-subheader> <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        </div>
 
         <v-list-item
           v-for="u in users"
@@ -86,3 +88,10 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+  .drawerHeader {
+    display: flex;
+    align-items: center;
+  }
+</style>

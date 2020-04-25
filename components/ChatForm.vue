@@ -7,8 +7,9 @@
         outlined
         dense
         v-model="text"
-        v-on:keydown.shift.enter="send"
+        v-on:keydown.enter="send"
       ></v-textarea>
+      <v-btn @click="send">Send</v-btn>
   </v-col>
 </template>
 
@@ -36,6 +37,6 @@ export default {
 
 <style scoped>
 .innerForm {
-
+  display: flex;
 }
 </style>
