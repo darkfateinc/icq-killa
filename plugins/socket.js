@@ -4,7 +4,7 @@ import VueSocketIO from 'vue-socket.io'
 export default function ({store}){
   Vue.use(new VueSocketIO({
     debug: false,
-    connection: "http://https://floating-castle-80355.herokuapp.com/",
+    connection: "http://https://floating-castle-80355.herokuapp.com:3000",
     vuex: {
       store,
       actionPrefix: 'SOCKET_',
