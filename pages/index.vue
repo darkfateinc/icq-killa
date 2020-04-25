@@ -5,7 +5,7 @@
     align-center
   >
   <v-flex xs12 sm8>
-    <v-card min-width="400">
+    <v-card min-width="250" max-width="400">
       <v-snackbar
         v-model="snackbar"
         :timeout="3000"

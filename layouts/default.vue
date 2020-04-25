@@ -1,6 +1,6 @@
 <template>
   <v-app app dark>
-    <v-navigation-drawer app v-model="drawer" mobile-break-point="750">
+    <v-navigation-drawer app v-model="drawer" ref='block' v-bind:mobile-break-point="breakpoint">
       <v-list subheader>
         <v-subheader>Список людей в комнате</v-subheader>
 
@@ -58,12 +58,25 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   data(){
     return {
-      drawer: true
+      drawer: true,
+      breakpoint: 600,
     }
   },
-  computed: mapState(['user', 'users']),
+  computed: {
+    ...mapState(['user', 'users']),
+  },
+  created() {
+    window.addEventListener('widther', this.hideDrawer);
+    this.hideDrawer();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   methods: {
     ...mapMutations(['clearData']),
+    hideDrawer() {
+      if (window.innerWidth < this.breakpoint) this.drawer = false;
+    },
     exit() {
       this.$socket.emit('userLeft', this.user.id, ()=>{
         this.$router.push('/?message=leftChat');
