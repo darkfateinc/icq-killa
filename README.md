@@ -1,6 +1,6 @@
 # icq-killa
 
-> This is a simple chat
+> P.S. Приложение называется "ЧЯТ". Это стриммерский прикол такой)
 
 ## Build Setup
 
